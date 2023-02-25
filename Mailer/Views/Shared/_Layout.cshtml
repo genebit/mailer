@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mailer | Sending Email to Google</title>
+
+    <!-- Main styles -->
+    <link href="~/Content/bs-coreui/build/bs-coreui.min.css" rel="stylesheet" />
+    <link href="~/Content/site.css" rel="stylesheet" />
+
+    <!-- Rich Text Editor -->
+    <link href="~/Content/jquery-richtexteditor/src/richtext.min.css" rel="stylesheet" />
+
+    <!-- Icons: Fontawesome 6 and CoreUI (both are optional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="~/Content/bs-coreui/plugins/coreui-comp/icons/css/all.min.css" rel="stylesheet" />
+
+    <!-- Jquery -->
+    <script src="~/Content/bs-coreui/plugins/jquery/dist/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="~/Content/bs-coreui/plugins/popperjs/core/dist/umd/popper.min.js"></script>
+
+    <!-- Core UI Scripts -->
+    <script defer src="~/Content/bs-coreui/plugins/coreui-comp/coreui/dist/js/coreui.bundle.js"></script>
+    <script defer src="~/Content/bs-coreui/plugins/simplebar/dist/simplebar.min.js"></script>
+    <script defer src="~/Content/bs-coreui/plugins/coreui-comp/utils/dist/coreui-utils.js"></script>
+
+    <!-- Bootstrap 5 -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/js/bootstrap.min.js" integrity="sha512-1/RvZTcCDEUjY/CypiMz+iqqtaoQfAITmNSJY17Myp4Ms5mdxPS5UV7iOfdZoxcGhzFbOm6sntTKJppjvuhg4g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script defer src="~/Content/bs-coreui/build/bs-coreui.min.js"></script>
+
+    <!-- Rich Text Editor -->
+    <script src="~/Content/jquery-richtexteditor/src/jquery.richtext.min.js"></script>
+</head>
+<body class="bg-light">
+    <div class="container min-vh-100 d-flex align-items-center justify-content-center">
+        @RenderBody()
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

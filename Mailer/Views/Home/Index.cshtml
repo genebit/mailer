@@ -1,0 +1,77 @@
+﻿<div class="d-flex gap-5 align-items-center">
+    <div>
+        <div id="NotificationAlerts">
+            <div class="alert alert-success" role="alert">
+                <div class="d-flex gap-3 align-items-center">
+                    <i class="fs-3 fa-solid fa-circle-check text-success"></i>
+                    <span class="text-success">The email was sent successfully!</span>
+                </div>
+            </div>
+            <div class="alert alert-danger" role="alert">
+                <div class="d-flex gap-3 align-items-center">
+                    <i class="fs-3 fa-solid fa-circle-xmark text-danger"></i>
+                    <span class="text-danger">The email failed to sent.</span>
+                </div>
+            </div>
+        </div>
+        <div class="card rounded-0 shadow px-4 py-5" style="min-width: 36rem">
+            <div class="card-header bg-white">
+                <h1 class="fw-bolder">Have a question? <br /> Contact Us!</h1>
+            </div>
+            <div class="card-body">
+                <form id="ContactForm" action="/Home/SendMail/" method="get" class="d-flex flex-column gap-3">
+                    <input id="SenderEmail" type="email" class="form-control" placeholder="Your email" />
+                    <textarea id="SenderMessage"></textarea>
+                    <div class="form-footer ms-auto">
+                        <button id="SubmitBtn" type="submit" class="btn btn-primary px-5">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <img src="~/Content/svg/empty-state-illustration.svg" />
+</div>
+<script>
+    const config = {
+        fonts: false,
+        fontColor: false,
+        fontSize: false,
+        imageUpload: false,
+        fileUpload: false,
+        urls: false,
+        table: false,
+        code: false,
+        videoEmbed: false,
+        removeStyles: false,
+        backgroundColor: false,
+        placeholder: "Your message to us...",
+    }
+
+    $(document).ready(function () {
+        $("#SenderMessage").richText(config)
+
+        $("#NotificationAlerts .alert").hide()
+    })
+
+    $("#ContactForm").submit(function (e) {
+        e.preventDefault()
+
+        let data = {
+            Email: $("#SenderEmail").val(),
+            Message: $("#SenderMessage").val()
+        }
+
+        $.ajax({
+            url: $(this).attr("action"),
+            data: data,
+            success: function (res) {
+                $("#NotificationAlerts .alert-success").show()
+                $("#NotificationAlerts .alert-danger").hide()
+            },
+            error: function (err) {
+                $("#NotificationAlerts .alert-success").hide()
+                $("#NotificationAlerts .alert-danger").show()
+            }
+        })
+    })
+</script>
