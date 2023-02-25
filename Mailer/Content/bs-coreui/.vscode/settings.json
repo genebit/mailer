@@ -1,0 +1,11 @@
+{
+    // Set your exported CSS Styles, Formats & save location.
+    "liveSassCompile.settings.formats": [
+        {
+            "format": "expanded",
+            "extensionName": ".css",
+            "savePath": "/src/css"
+        }
+    ],
+    "liveServer.settings.port": 5501
+}
