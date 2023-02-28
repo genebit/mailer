@@ -25,17 +25,24 @@ namespace Mailer.Controllers
 
                 mail.To.Add(sender.Email);
 
-                SmtpClient smtp = new SmtpClient
+                try
                 {
-                    Port = 587,
-                    EnableSsl = true,
-                    UseDefaultCredentials = false,
-                    Host = "smtp.gmail.com",
-                    Credentials = new System.Net.NetworkCredential("webdevcorp.samp@gmail.com", "qvpfuhrwlofqxpsb")
-                };
-                smtp.Send(mail);
+                    SmtpClient smtp = new SmtpClient
+                    {
+                        Port = 587,
+                        EnableSsl = true,
+                        UseDefaultCredentials = false,
+                        Host = "smtp.gmail.com",
+                        Credentials = new System.Net.NetworkCredential("webdevcorp.samp@gmail.com", "qvpfuhrwlofqxpsb")
+                    };
+                    smtp.Send(mail);
 
-                return Json(true, JsonRequestBehavior.AllowGet);
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+                catch (SmtpException e)
+                {
+                    throw e;
+                }
             }
 
             return Json(false, JsonRequestBehavior.DenyGet);
