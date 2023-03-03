@@ -4,13 +4,13 @@
             <div class="alert alert-success" role="alert">
                 <div class="d-flex gap-3 align-items-center">
                     <i class="fs-3 fa-solid fa-circle-check text-success"></i>
-                    <span class="text-success">The email was sent successfully!</span>
+                    <span message class="text-success"></span>
                 </div>
             </div>
             <div class="alert alert-danger" role="alert">
                 <div class="d-flex gap-3 align-items-center">
                     <i class="fs-3 fa-solid fa-circle-xmark text-danger"></i>
-                    <span class="text-danger">The email failed to sent.</span>
+                    <span message class="text-danger"></span>
                 </div>
             </div>
         </div>
@@ -20,6 +20,7 @@
             </div>
             <div class="card-body">
                 <form id="ContactForm" action="/Home/SendMail/" method="get" class="d-flex flex-column gap-3">
+                    <input id="SenderName" type="text" class="form-control" placeholder="Your name" />
                     <input id="SenderEmail" type="email" class="form-control" placeholder="Your email" />
                     <textarea id="SenderMessage"></textarea>
                     <div class="form-footer ms-auto">
@@ -57,6 +58,7 @@
         e.preventDefault()
 
         let data = {
+            Name: $("#SenderName").val(),
             Email: $("#SenderEmail").val(),
             Message: $("#SenderMessage").val()
         }
@@ -65,12 +67,15 @@
             url: $(this).attr("action"),
             data: data,
             success: function (res) {
-                $("#NotificationAlerts .alert-success").show()
-                $("#NotificationAlerts .alert-danger").hide()
-            },
-            error: function (err) {
-                $("#NotificationAlerts .alert-success").hide()
-                $("#NotificationAlerts .alert-danger").show()
+                $("#NotificationAlerts .alert-success, #NotificationAlerts .alert-danger").hide()
+                if (res.success) {
+                    $("#NotificationAlerts .alert-success").show()
+                    $("#NotificationAlerts .alert-success span[message]").html(res.response)
+                }
+                else {
+                    $("#NotificationAlerts .alert-danger").show()
+                    $("#NotificationAlerts .alert-danger span[message]").html(res.response)
+                }
             }
         })
     })
